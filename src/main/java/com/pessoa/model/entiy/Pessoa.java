@@ -3,15 +3,65 @@ package com.pessoa.model.entiy;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+@Entity(name = "pessoa")
 public class Pessoa {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_pessoa")
 	private Long id;
+
+	@NotBlank(message = "Campo 'nome' não pode ser vazio ou nulo")
+	@Size(min = 2, max = 100, message = "Campo 'nome' deve ter de 2 a 100 caracteres")
+	@Column(nullable = false)
 	private String nome;
+
+	@NotBlank(message = "Campo 'cpf' não pode ser vazio ou nulo")
+	@Size(min = 11, max = 11, message = "Campo 'cpf' deve ter 11 caracteres")
+	@Column(nullable = false)
 	private String cpf;
+
+	@NotBlank(message = "Campo 'email' não pode ser vazio ou nulo")
+	@Email(message = "Campo 'email' deve conter um email válido")
+	@Column(nullable = false)
 	private String email;
+
+	@Column(name = "data_nascimento", nullable = false)
+	@NotNull(message = "Campo 'email' não pode ser vazio ou nulo")
 	private Date dataNascimento;
+
+	@Valid
+	@NotBlank(message = "Campo 'profissao' não pode ser vazio ou nulo")
+	@OneToOne(mappedBy = "pessoa", cascade = CascadeType.PERSIST, optional = false)
+	@JsonManagedReference
 	private Profissao profissao;
+
+	@Valid
+	@NotBlank(message = "Campo 'telefone' não pode ser vazio ou nulo")
+	@OneToOne(mappedBy = "pessoa", cascade = CascadeType.PERSIST, optional = false)
+	@JsonManagedReference
 	private Telefone telefone;
+
+	@Valid
+	@NotBlank(message = "Campo 'enderecos' não pode ser vazio ou nulo")
+	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.PERSIST)
+	@JsonManagedReference
 	private List<Endereco> enderecos;
 
 	public Long getId() {
