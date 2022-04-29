@@ -1,24 +1,56 @@
 package com.pessoa.model.dto;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 public class ErrorMessage {
 
-	private String message;
-	private Integer statusCode;
+	private String title;
+	private List<String> message;
+	private int status;
+	private String timestamp = ZonedDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a z Z"));
 
-	public String getMessage() {
+	public ErrorMessage(String title, List<String> message, int status) {
+		this.title = title;
+		this.message = message;
+		this.status = status;
+	}
+
+	public ErrorMessage() {
+
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public List<String> getMessage() {
 		return message;
 	}
 
-	public void setMessage(String message) {
+	public void setMessage(List<String> message) {
 		this.message = message;
 	}
 
-	public Integer getStatusCode() {
-		return statusCode;
+	public int getStatus() {
+		return status;
 	}
 
-	public void setStatusCode(Integer statusCode) {
-		this.statusCode = statusCode;
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public String getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
 	}
 
 }

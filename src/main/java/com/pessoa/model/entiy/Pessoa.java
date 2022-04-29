@@ -1,5 +1,6 @@
 package com.pessoa.model.entiy;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,9 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity(name = "pessoa")
-public class Pessoa {
+public class Pessoa implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,19 +50,19 @@ public class Pessoa {
 	private Date dataNascimento;
 
 	@Valid
-	@NotBlank(message = "Campo 'profissao' não pode ser vazio ou nulo")
+	@NotNull(message = "Campo 'profissao' não pode ser vazio ou nulo")
 	@OneToOne(mappedBy = "pessoa", cascade = CascadeType.PERSIST, optional = false)
 	@JsonManagedReference
 	private Profissao profissao;
 
 	@Valid
-	@NotBlank(message = "Campo 'telefone' não pode ser vazio ou nulo")
+	@NotNull(message = "Campo 'telefone' não pode ser vazio ou nulo")
 	@OneToOne(mappedBy = "pessoa", cascade = CascadeType.PERSIST, optional = false)
 	@JsonManagedReference
 	private Telefone telefone;
 
 	@Valid
-	@NotBlank(message = "Campo 'enderecos' não pode ser vazio ou nulo")
+	@NotNull(message = "Campo 'enderecos' não pode ser vazio ou nulo")
 	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.PERSIST)
 	@JsonManagedReference
 	private List<Endereco> enderecos;

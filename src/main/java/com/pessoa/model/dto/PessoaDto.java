@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.pessoa.model.entiy.Endereco;
+import com.pessoa.model.entiy.Pessoa;
 import com.pessoa.model.entiy.Profissao;
 import com.pessoa.model.entiy.Telefone;
 
@@ -15,8 +16,23 @@ public class PessoaDto {
 	private String email;
 	private Date dataNascimento;
 	private Profissao profissao;
-	private List<Telefone> telefones;
-	private List<Endereco> enderecos;
+	private Telefone telefones;
+	private List<Endereco> enderecos;	
+
+	public PessoaDto(Pessoa pessoa) {
+		this.id = pessoa.getId();
+		this.nome = pessoa.getNome();
+		this.cpf = pessoa.getCpf();
+		this.email = pessoa.getEmail();
+		this.dataNascimento = pessoa.getDataNascimento();
+		this.profissao = pessoa.getProfissao();
+		this.telefones = pessoa.getTelefone();
+		this.enderecos = pessoa.getEnderecos();
+	}
+	
+	public PessoaDto() {
+		 
+	}
 
 	public Long getId() {
 		return id;
@@ -66,11 +82,11 @@ public class PessoaDto {
 		this.profissao = profissao;
 	}
 
-	public List<Telefone> getTelefones() {
+	public Telefone getTelefones() {
 		return telefones;
 	}
 
-	public void setTelefones(List<Telefone> telefones) {
+	public void setTelefones(Telefone telefones) {
 		this.telefones = telefones;
 	}
 
