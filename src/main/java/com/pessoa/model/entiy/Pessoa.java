@@ -46,7 +46,7 @@ public class Pessoa implements Serializable{
 	private String email;
 
 	@Column(name = "data_nascimento", nullable = false)
-	@NotNull(message = "Campo 'email' não pode ser vazio ou nulo")
+	@NotNull(message = "Campo 'dataNascimento' não pode ser vazio ou nulo")
 	private Date dataNascimento;
 
 	@Valid
