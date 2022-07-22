@@ -1,15 +1,17 @@
 <template>
   <div class="home">
     <h1>LISTA DE PESSOAS</h1>
-    <ListaComp />
+    <ListaPessoas />
+    <CadastraPessoa />
   </div>
 </template>
 
 <script>
-import ListaComp from './ListaComp.vue';
+import ListaPessoas from './ListaPessoas.vue';
+import CadastraPessoa from './CadastraPessoa.vue';
 export default {
     name: "HomeComp",
-    components: { ListaComp }
+    components: { ListaPessoas, CadastraPessoa }
 }
 </script>
 
